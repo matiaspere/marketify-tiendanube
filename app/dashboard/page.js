@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 
-// ✅ Ahora sí podemos usar ssr: false
 const DashboardClient = dynamic(() => import("./DashboardClient"), {
   ssr: false,
 });
