@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { connect, iAmReady } from "@tiendanube/nexo";
 import nexo from "@/lib/nexo";
-import { Card, CardBody, Tabs, TabsList, TabsTab } from "@nimbus-ds/components";
+import { Card, CardBody, Button } from "@nimbus-ds/components";
 
 export default function DashboardClient() {
   const [isConnect, setIsConnect] = useState(false);
@@ -27,30 +27,30 @@ export default function DashboardClient() {
         Marketify - Tienda {storeId ?? "desconocida"}
       </h1>
 
-      <Tabs value={tab} onValueChange={setTab}>
-        <TabsList>
-          <TabsTab value="contador" label="⏳ Contador de tiempo" />
-          <TabsTab value="optimizador" label="⚡ Optimizador de conversiones" />
-        </TabsList>
+      <div style={{ marginBottom: "12px" }}>
+        <Button onClick={() => setTab("contador")}>⏳ Contador de tiempo</Button>
+        <Button onClick={() => setTab("optimizador")} style={{ marginLeft: "8px" }}>
+          ⚡ Optimizador de conversiones
+        </Button>
+      </div>
 
-        {tab === "contador" && (
-          <Card>
-            <CardBody>
-              <h2>Configura tu Contador de tiempo</h2>
-              <p>Aquí podrás agregar contadores a tus productos.</p>
-            </CardBody>
-          </Card>
-        )}
+      {tab === "contador" && (
+        <Card>
+          <CardBody>
+            <h2>Configura tu Contador de tiempo</h2>
+            <p>Aquí podrás agregar contadores a tus productos.</p>
+          </CardBody>
+        </Card>
+      )}
 
-        {tab === "optimizador" && (
-          <Card>
-            <CardBody>
-              <h2>Optimizador de conversiones</h2>
-              <p>Próximamente podrás activar recomendaciones de conversión.</p>
-            </CardBody>
-          </Card>
-        )}
-      </Tabs>
+      {tab === "optimizador" && (
+        <Card>
+          <CardBody>
+            <h2>Optimizador de conversiones</h2>
+            <p>Próximamente podrás activar recomendaciones de conversión.</p>
+          </CardBody>
+        </Card>
+      )}
     </div>
   );
 }
