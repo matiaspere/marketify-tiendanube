@@ -1,28 +1,28 @@
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Store {
-    id          Int      @id @default(autoincrement())
-    storeId     Int      @unique
-    accessToken String
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  storeId     Int      @unique
+  accessToken String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-    counters Counter[]
+  counters Counter[]
 }
 
 model Counter {
-    id        Int      @id @default(autoincrement())
-    storeId   Int
-    productId Int
-    endDate   DateTime
-    createdAt DateTime @default(now())
-
-    store Store @relation(fields: [storeId], references: [storeId], onDelete: Cascade)
+  id        Int      @id @default(autoincrement())
+  productId Int
+  endDate   DateTime
+  store     Store    @relation(fields: [storeId], references: [id])
+  storeId   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
