@@ -2,13 +2,13 @@
   "name": "marketify-tiendanube",
   "version": "0.1.0",
   "private": true,
-"scripts": {
-  "dev": "next dev --turbopack",
-  "build": "prisma generate && next build",
-  "start": "next start",
-  "lint": "next lint",
-  "postinstall": "prisma generate"
-},
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "prisma generate"
+  },
   "dependencies": {
     "@nimbus-ds/callout-card": "^1.7.0",
     "@nimbus-ds/components": "^5.12.1",
@@ -17,6 +17,7 @@
     "@nimbus-ds/menu": "^1.5.6",
     "@nimbus-ds/styles": "^9.16.2",
     "@prisma/client": "^6.12.0",
+    "@tiendanube/nexo": "^1.2.1",
     "next": "15.4.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
