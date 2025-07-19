@@ -42,7 +42,7 @@ export async function GET(req) {
   });
 
   return NextResponse.redirect(
-    `${process.env.NEXT_PUBLIC_APP_URL}/tiendanube/dashboard?store_id=${user_id}`,
+    `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?store_id=${user_id}`,
     { status: 302 }
   );
 }
