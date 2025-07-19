@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import { connect, iAmReady } from "@tiendanube/nexo";
 import nexo from "@/lib/nexo";
-import { Card, CardBody } from "@nimbus-ds/components";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@nimbus-ds/tabs";
+import { Card, CardBody, Tabs, TabsList, TabsTab } from "@nimbus-ds/components";
 
 export default function DashboardClient() {
   const [isConnect, setIsConnect] = useState(false);
@@ -17,8 +16,6 @@ export default function DashboardClient() {
       setStoreId(storeData.id);
       setIsConnect(true);
       iAmReady(nexo);
-      console.log("Conectado a Tiendanube:", storeData);
-      console.log("nexo", nexo);
     });
   }, []);
 
@@ -32,29 +29,27 @@ export default function DashboardClient() {
 
       <Tabs value={tab} onValueChange={setTab}>
         <TabsList>
-          <TabsTrigger value="contador">⏳ Contador de tiempo</TabsTrigger>
-          <TabsTrigger value="optimizador">
-            ⚡ Optimizador de conversiones
-          </TabsTrigger>
+          <TabsTab value="contador" label="⏳ Contador de tiempo" />
+          <TabsTab value="optimizador" label="⚡ Optimizador de conversiones" />
         </TabsList>
 
-        <TabsContent value="contador">
+        {tab === "contador" && (
           <Card>
             <CardBody>
               <h2>Configura tu Contador de tiempo</h2>
               <p>Aquí podrás agregar contadores a tus productos.</p>
             </CardBody>
           </Card>
-        </TabsContent>
+        )}
 
-        <TabsContent value="optimizador">
+        {tab === "optimizador" && (
           <Card>
             <CardBody>
               <h2>Optimizador de conversiones</h2>
               <p>Próximamente podrás activar recomendaciones de conversión.</p>
             </CardBody>
           </Card>
-        </TabsContent>
+        )}
       </Tabs>
     </div>
   );
