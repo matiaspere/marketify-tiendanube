@@ -1,20 +1,20 @@
 "use client";
 
-import { useEffect } from "react";
-import { Nexo } from "@tiendanube/nexo";
+import { useEffect, useState } from "react";
+import { connect, iAmReady } from "@tiendanube/nexo/helpers";
+import nexo from "@/lib/nexoClient";
 
-export default function DashboardPage({ searchParams }) {
-  const storeId = searchParams.store_id;
+export default function DashboardPage() {
+  const [isConnect, setIsConnect] = useState(false);
 
   useEffect(() => {
-    const nexo = new Nexo();
-    nexo.render(); // Inicializa la comunicación con Tiendanube
+    connect(nexo).then(() => {
+      setIsConnect(true);
+      iAmReady(nexo);
+    });
   }, []);
 
-  return (
-    <div>
-      <h1>Bienvenido, Tienda {storeId}</h1>
-      <p>La app está funcionando dentro del admin.</p>
-    </div>
-  );
+  if (!isConnect) return <div>Conectando...</div>;
+
+  return <div>¡Conectado con Tiendanube!</div>;
 }
