@@ -11,7 +11,7 @@ const nextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "frame-ancestors https://*.tiendanube.com https://*.nuvemshop.com;"
+            value: "frame-ancestors https://*.tiendanube.com https://*.nuvemshop.com *"
           }
         ]
       }
