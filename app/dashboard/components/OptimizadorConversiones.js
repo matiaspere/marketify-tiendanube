@@ -1,10 +1,15 @@
 "use client";
+import { Box, Text, Card, Tag, Icon, IconButton } from "@nimbus-ds/components";
 
 export default function OptimizadorConversiones() {
   return (
-    <div>
-      <h2>Optimizador de conversiones</h2>
-      <p>Aquí agregaremos herramientas para aumentar la conversión.</p>
-    </div>
+    <Card p="4">
+      <Text fontSize="highlight" color="neutral-textHigh">
+        Optimizador de Conversiones
+      </Text>
+      <Text mt="2" fontSize="base" color="neutral-textLow">
+        Próximamente podrás mejorar la conversión de tu tienda.
+      </Text>
+    </Card>
   );
 }

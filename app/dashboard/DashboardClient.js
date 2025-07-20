@@ -4,18 +4,13 @@ import { useEffect, useState } from "react";
 import { connect, iAmReady, getStoreInfo } from "@tiendanube/nexo";
 import nexo from "@/lib/nexo";
 
-import { Box, Text, Card, Tag, Icon, IconButton } from "@nimbus-ds/components";
+import { Box, Text, Card, Tag } from "@nimbus-ds/components";
 import { Menu } from "@nimbus-ds/menu";
-import {
-  TiendanubeIcon,
-  ExternalLinkIcon,
-  ClockIcon,
-  MoneyIcon,
-  StatsIcon,
-  CogIcon,
-} from "@nimbus-ds/icons";
+import { ClockIcon, MoneyIcon, CogIcon } from "@nimbus-ds/icons";
 
 import "@nimbus-ds/styles/dist/index.css";
+import CountTimer from "./components/CountTimer/CountTimer";
+import OptimizadorConversiones from "./components/OptimizadorConversiones";
 
 export default function DashboardClient() {
   const [isConnected, setIsConnected] = useState(false);
@@ -101,27 +96,9 @@ export default function DashboardClient() {
 
       {/* === CONTENIDO === */}
       <Box flex="1" p="6">
-        {activeTab === "counter" && (
-          <Card p="4">
-            <Text fontSize="highlight" color="neutral-textHigh">
-              Configura tu Contador
-            </Text>
-            <Text mt="2" fontSize="base" color="neutral-textLow">
-              Aquí podrás agregar contadores a tus productos.
-            </Text>
-          </Card>
-        )}
+        {activeTab === "counter" && <CountTimer />}
 
-        {activeTab === "optimizer" && (
-          <Card p="4">
-            <Text fontSize="highlight" color="neutral-textHigh">
-              Optimizador de Conversiones
-            </Text>
-            <Text mt="2" fontSize="base" color="neutral-textLow">
-              Próximamente podrás mejorar la conversión de tu tienda.
-            </Text>
-          </Card>
-        )}
+        {activeTab === "optimizer" && <OptimizadorConversiones />}
 
         {activeTab === "stats" && (
           <Card p="4">

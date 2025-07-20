@@ -10,9 +10,11 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@nimbus-ds/calendar": "^1.1.1",
     "@nimbus-ds/callout-card": "^1.7.0",
     "@nimbus-ds/components": "^5.12.1",
     "@nimbus-ds/data-list": "^1.2.5",
+    "@nimbus-ds/data-table": "^1.2.5",
     "@nimbus-ds/icons": "^1.11.0",
     "@nimbus-ds/menu": "^1.5.6",
     "@nimbus-ds/styles": "^9.16.2",
@@ -21,6 +23,7 @@
     "@tiendanube/nexo": "^1.2.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "lucide-react": "^0.525.0",
     "next": "15.4.2",
     "react": "^18.3.1",
