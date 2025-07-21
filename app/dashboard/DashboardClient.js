@@ -6,16 +6,17 @@ import nexo from "@/lib/nexo";
 
 import { Box, Text, Card, Tag } from "@nimbus-ds/components";
 import { Menu } from "@nimbus-ds/menu";
-import { ClockIcon, MoneyIcon, CogIcon } from "@nimbus-ds/icons";
+import { ClockIcon, MoneyIcon, HomeIcon } from "@nimbus-ds/icons";
 
 import "@nimbus-ds/styles/dist/index.css";
-import CountTimer from "./components/CountTimer/CountTimer";
 import OptimizadorConversiones from "./components/OptimizadorConversiones";
+import HomeComponent from "./components/Home/HomeComponent";
+import CounterConfigView from "./components/CountTimer/CounterConfigView";
 
 export default function DashboardClient() {
   const [isConnected, setIsConnected] = useState(false);
   const [storeId, setStoreId] = useState(null);
-  const [activeTab, setActiveTab] = useState("counter");
+  const [activeTab, setActiveTab] = useState("home");
   const [readyCalled, setReadyCalled] = useState(false);
 
   useEffect(() => {
@@ -59,6 +60,13 @@ export default function DashboardClient() {
           <Menu.Body>
             <Menu.Section title="Funciones">
               <Menu.Button
+                startIcon={HomeIcon}
+                label="Dashboard"
+                active={activeTab === "home"}
+                onClick={() => setActiveTab("home")}
+              ></Menu.Button>
+
+              <Menu.Button
                 startIcon={ClockIcon}
                 label="Contador de tiempo"
                 active={activeTab === "counter"}
@@ -86,21 +94,23 @@ export default function DashboardClient() {
           </Menu.Body>
 
           {/* FOOTER */}
-          <Menu.Footer
+          {/* <Menu.Footer
             label={`Tienda: ${storeId || "Cargando..."}`}
             startIcon={CogIcon}
             onClick={() => console.log("Configuración clickeada")}
-          />
+          /> */}
         </Menu>
       </Box>
 
       {/* === CONTENIDO === */}
       <Box flex="1" p="6">
-        {activeTab === "counter" && <CountTimer />}
+        {activeTab === "home" && <HomeComponent />}
+
+        {activeTab === "counter" && <CounterConfigView />}
 
         {activeTab === "optimizer" && <OptimizadorConversiones />}
 
-        {activeTab === "stats" && (
+        {/* {activeTab === "stats" && (
           <Card p="4">
             <Text fontSize="highlight" color="neutral-textHigh">
               Estadísticas
@@ -109,7 +119,7 @@ export default function DashboardClient() {
               Visualiza métricas de tus campañas y conversiones.
             </Text>
           </Card>
-        )}
+        )} */}
       </Box>
     </Box>
   );

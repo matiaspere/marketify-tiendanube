@@ -17,6 +17,10 @@ export default function CounterConfiguration({
   setCounterText,
   counterStyleSelected,
   setCounterStyleSelected,
+  counterBgColor,
+  setCounterBgColor,
+  counterTextColor,
+  setCounterTextColor,
 }) {
   const today = new Date();
 
@@ -33,35 +37,55 @@ export default function CounterConfiguration({
   const counterStyles = {
     style1: {
       counterBoxStyle: {
-        backgroundColor: "#000",
-        color: "#fff",
-        borderRadius: "8px",
-        padding: "10px 20px",
-        fontFamily: "monospace",
+        display: "flex",
+        gap: "5px",
       },
       timeStyle: {
         fontSize: "1.5rem",
         fontWeight: "bold",
+        color: counterTextColor,
+        backgroundColor: counterBgColor,
+        borderRadius: "8px",
+        padding: "10px 20px",
+        fontFamily: "monospace",
+      },
+      colonStyle: {
+        display: "flex",
+        justifyItems: "center",
+        alignItems: "center",
+        fontSize: "1.2rem",
+        color: counterBgColor,
       },
     },
     style2: {
       counterBoxStyle: {
-        backgroundColor: "#f5f5f5",
-        color: "#333",
-        borderRadius: "4px",
-        padding: "8px 15px",
-        fontFamily: "Arial, sans-serif",
+        display: "flex",
+        gap: "5px",
       },
       timeStyle: {
         fontSize: "1.2rem",
         fontWeight: "normal",
+        backgroundColor: counterBgColor,
+        color: counterTextColor,
+        borderRadius: "4px",
+        padding: "8px 15px",
+        fontFamily: "Arial, sans-serif",
+      },
+      colonStyle: {
+        display: "flex",
+        justifyItems: "center",
+        alignItems: "center",
+        fontSize: "1.2rem",
+        color: counterBgColor,
       },
     },
     style3: {
       counterBoxStyle: {
+        display: "flex",
+        gap: "5px",
         backgroundColor: "#fff",
-        color: "#0070f3",
-        border: "2px solid #0070f3",
+        color: counterTextColor,
+        border: `2px solid ${counterBgColor}`,
         borderRadius: "12px",
         padding: "12px 25px",
         fontFamily: "Roboto, sans-serif",
@@ -69,6 +93,13 @@ export default function CounterConfiguration({
       timeStyle: {
         fontSize: "1.8rem",
         fontWeight: "600",
+      },
+      colonStyle: {
+        display: "flex",
+        justifyItems: "center",
+        alignItems: "center",
+        fontSize: "1.2rem",
+        color: counterBgColor,
       },
     },
   };
@@ -174,7 +205,7 @@ export default function CounterConfiguration({
               containerProps={{
                 height: "100%",
                 overflowY: "auto",
-                maxHeight: "400px",
+                width: "300px",
               }}
             />
           </Box>
@@ -214,7 +245,7 @@ export default function CounterConfiguration({
         />
 
         {showCalendarEndDate && (
-          <Box mt="2" border="1px solid #ddd" borderRadius="4px" p="2">
+          <Box mt="2" border="1px solid #ddd" borderRadius="4px">
             <Calendar
               mode="single"
               showOutsideDays
@@ -228,7 +259,7 @@ export default function CounterConfiguration({
               containerProps={{
                 height: "100%",
                 overflowY: "auto",
-                maxHeight: "400px",
+                width: "300px",
               }}
               fromDate={startDate || today}
             />
@@ -273,9 +304,9 @@ export default function CounterConfiguration({
           value={counterStyleSelected}
           onChange={(e) => setCounterStyleSelected(e.target.value)}
         >
-          <option value="style1">Estilo Digital</option>
+          <option value="style1">Contador Clasico</option>
           <option value="style2">Estilo Minimal</option>
-          <option value="style3">Estilo Elegante</option>
+          <option value="style3">Reloj Digital</option>
         </Select>
 
         {/* === PREVIEW === */}
@@ -286,31 +317,52 @@ export default function CounterConfiguration({
           alignItems="center"
           gap="2"
         >
-          <Text fontSize="highlight" color="primary-textHigh">
+          <h2
+            style={{
+              fontSize: "1.5rem",
+              color: `${counterBgColor}`,
+              fontWeight: "bold",
+            }}
+          >
             {counterText}
-          </Text>
+          </h2>
 
           <div
             style={{
-              display: "flex",
-              gap: "5px",
               ...selectedStyles.counterBoxStyle,
             }}
           >
             {timeLeft.days > 0 && (
               <>
-                <div style={selectedStyles.timeStyle}>{timeLeft.days}d</div>:
+                <div style={selectedStyles.timeStyle}>{timeLeft.days}d</div>
+                <div style={selectedStyles.colonStyle}>:</div>
               </>
             )}
             {timeLeft.hours > 0 && (
               <>
-                <div style={selectedStyles.timeStyle}>{timeLeft.hours}h</div>:
+                <div style={selectedStyles.timeStyle}>{timeLeft.hours}h</div>
+                <div style={selectedStyles.colonStyle}>:</div>
               </>
             )}
-            <div style={selectedStyles.timeStyle}>{timeLeft.minutes}m</div>:
+            <div style={selectedStyles.timeStyle}>{timeLeft.minutes}m</div>
+            <div style={selectedStyles.colonStyle}>:</div>
             <div style={selectedStyles.timeStyle}>{timeLeft.seconds}s</div>
           </div>
         </Box>
+
+        <Label>Color primario del contador</Label>
+        <Input
+          type="color"
+          value={counterBgColor}
+          onChange={(e) => setCounterBgColor(e.target.value)}
+        />
+
+        <Label>Color del texto del contador</Label>
+        <Input
+          type="color"
+          value={counterTextColor}
+          onChange={(e) => setCounterTextColor(e.target.value)}
+        />
       </Box>
     </Card>
   );

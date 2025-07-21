@@ -5,7 +5,6 @@ import { CheckCircleIcon, ExclamationTriangleIcon } from "@nimbus-ds/icons";
 export default function ProductTable({
   categoryId,
   rows = [],
-  setRows,
   checkedRows = [],
   setCheckedRows,
   headerCheckboxStatus = false,

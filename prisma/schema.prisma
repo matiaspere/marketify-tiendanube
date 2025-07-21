@@ -18,11 +18,24 @@ model Store {
 }
 
 model Counter {
-  id        Int      @id @default(autoincrement())
-  productId Int
-  endDate   DateTime
-  store     Store    @relation(fields: [storeId], references: [id])
-  storeId   Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                   Int      @id @default(autoincrement())
+  storeId              Int
+  scriptId             Int
+  products             Int[]
+  startDate            DateTime
+  startTime            String
+  endDate              DateTime
+  endTime              String
+  counterText          String
+  counterStyleSelected String
+  counterBgColor       String
+  counterTextColor     String
+  counterBoxStyle      Json
+  timeStyle            Json
+  colonStyle           Json
+  status               String   @default("active")
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  Store Store @relation(fields: [storeId], references: [id])
 }
